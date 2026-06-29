@@ -27,6 +27,7 @@ cloudinary.config({
 
 const allowedOrigins = [
   "http://localhost:5173",
+  "https://realtime-chat-app-git-main-jhashivam6347s-projects.vercel.app",
   "https://realtime-chat-app-theta-fawn.vercel.app"
 ];
 
