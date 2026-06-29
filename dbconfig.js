@@ -1,9 +1,13 @@
 import { MongoClient } from "mongodb"
-const url = "mongodb+srv://jhashiv200:Mondodb%40123@cluster0.ytfa9ks.mongodb.net/?appName=Cluster0"
-const dbName = "chat-app"
+import dotenv from "dotenv"
+
+dotenv.config()
+
+const url = process.env.MONGODB_URI
+const dbName = process.env.DB_NAME || "chat-app"
 export const collectionName = "user-detail"
 const client = new MongoClient(url)
-export const connection = async()=>{
-    const connect = await client.connect();
-    return await connect.db(dbName)
+export const connection = async () => {
+  const connect = await client.connect()
+  return await connect.db(dbName)
 }

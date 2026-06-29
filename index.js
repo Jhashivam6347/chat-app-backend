@@ -41,7 +41,7 @@ app.use(cors({
 
 app.use(express.json());
 
-const JWT_SECRET = process.env.JWT_SECRET || "7874317332";
+const JWT_SECRET = process.env.JWT_SECRET ;
 
 /* ================= SERVER + SOCKET SETUP ================= */
 
