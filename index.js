@@ -25,10 +25,16 @@ cloudinary.config({
 });
 
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://realtime-chat-app-theta-fawn.vercel.app"
+];
+
 const app = express();
 const frontendUrl = process.env.FRONTEND_URL || "http://localhost:5173";
+
 app.use(cors({
-  origin: frontendUrl,
+  origin: allowedOrigins,
   credentials: true
 }));
 
@@ -40,16 +46,14 @@ const JWT_SECRET = process.env.JWT_SECRET || "7874317332";
 
 const server = http.createServer(app);
 
+
 const io = new Server(server, {
-  cors: {
-    origin: frontendUrl,
-    methods: ["GET", "POST"],
-    credentials: true
+  cors:{
+    origin: allowedOrigins,
+    methods:["GET","POST"],
+    credentials:true
   }
 });
-
-
-
 
 /* ================= AUTH ROUTES ================= */
 
@@ -414,6 +418,8 @@ io.on("connection", (socket) => {
 
 /* ================= IMPORTANT FIX ================= */
 
-server.listen(5000, () => {
+const PORT = process.env.PORT || 5000;
+
+server.listen(PORT, () => {
   console.log("Server running on port 5000");
 });
